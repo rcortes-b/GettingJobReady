@@ -40,3 +40,12 @@ target_link_libraries(task PRIVATE tasklib)
 # Tests
 enable_testing()
 add_subdirectory(tests)
+
+# GUI (optional — only built if Qt6 is available)
+find_package(Qt6 QUIET COMPONENTS Widgets)
+if(Qt6_FOUND)
+    message(STATUS "Qt6 found — building task-gui")
+    add_subdirectory(gui)
+else()
+    message(STATUS "Qt6 not found — skipping task-gui")
+endif()
